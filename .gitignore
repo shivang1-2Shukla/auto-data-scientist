@@ -1,6 +1,21 @@
-venv/
+# Python
 __pycache__/
-data/
-models/
-.mlflow/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
 .env
+
+# ML artifacts (generated)
+artifacts/
+models/
+
+# Data (optional – adjust if your team wants sample data)
+data/
+reports/
+
+# OS
+.DS_Store
+Thumbs.db
