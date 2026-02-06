@@ -1,14 +1,15 @@
 {
     "categorical_columns": [
-        "name",
+        "city",
         "gender"
     ],
     "numerical_columns": [
-        "id"
+        "id",
+        "income"
     ],
     "target_column": "age",
     "output_shape": [
-        6,
+        10,
         7
     ]
 }
