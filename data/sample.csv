@@ -1,0 +1,7 @@
+id,name,age,gender
+1,Alice,20,M
+2,Bob,,F
+2,Bob,,M
+3,,22,M
+4,Shivang,21,M
+5,Srijan,21,

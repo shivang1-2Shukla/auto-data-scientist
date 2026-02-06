@@ -1,0 +1,13 @@
+{
+    "task_type": "regression",
+    "metric": "rmse",
+    "results": {
+        "LinearRegression": {
+            "rmse": 3.299831645537215
+        },
+        "RandomForest": {
+            "rmse": 0.6266179059043878
+        }
+    },
+    "best_model": "RandomForest"
+}

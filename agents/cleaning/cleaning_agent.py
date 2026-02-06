@@ -2,14 +2,15 @@ import pandas as pd
 import json
 import os
 
+
 class CleaningAgent:
     def __init__(self):
         print("🧼 CleaningAgent initialized")
 
-    def clean(self, data_path):
+    def run(self, raw_data_path, output_path):
         print("Cleaning data...")
 
-        df = pd.read_csv(data_path)
+        df = pd.read_csv(raw_data_path)
         print(f"Rows before cleaning: {len(df)}")
 
         # remove duplicates
@@ -29,21 +30,12 @@ class CleaningAgent:
             "missing_values_after": int(missing_after)
         }
 
-        os.makedirs("data/processed", exist_ok=True)
+        os.makedirs(os.path.dirname(output_path), exist_ok=True)
         os.makedirs("reports/cleaning", exist_ok=True)
 
-        df.to_csv("data/processed/cleaned.csv", index=False)
+        df.to_csv(output_path, index=False)
 
         with open("reports/cleaning/cleaning_report.json", "w") as f:
             json.dump(report, f, indent=4)
 
-        return df, report
-
-
-if __name__ == "__main__":
-    agent = CleaningAgent()
-    sample_data_path = "data/sample.csv"
-    cleaned, report = agent.clean(sample_data_path)
-
-    print("Cleaned Data:", cleaned)
-    print("Report:", report)
+        return output_path
