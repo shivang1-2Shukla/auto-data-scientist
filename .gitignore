@@ -8,13 +8,6 @@ __pycache__/
 venv/
 .env
 
-# ML artifacts (generated)
-artifacts/
-models/
-
-# Data (optional – adjust if your team wants sample data)
-data/
-reports/
 
 # OS
 .DS_Store

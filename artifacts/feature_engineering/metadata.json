@@ -1,0 +1,14 @@
+{
+    "categorical_columns": [
+        "name",
+        "gender"
+    ],
+    "numerical_columns": [
+        "id"
+    ],
+    "target_column": "age",
+    "output_shape": [
+        6,
+        7
+    ]
+}

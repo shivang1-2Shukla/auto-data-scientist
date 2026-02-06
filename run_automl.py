@@ -5,7 +5,7 @@ def main():
     orchestrator = Orchestrator(task_type="regression")
 
     result = orchestrator.run_training_pipeline(
-        data_path="data/processed/cleaned.csv",
+        raw_data_path="data/sample.csv",
         target_column="age"
     )
 

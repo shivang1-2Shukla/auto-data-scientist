@@ -1,3 +1,4 @@
 black==24.4.2
 isort==5.13.2
 pytest==8.2.2
+git checkout -b feature/<what-you-are-working-on>
