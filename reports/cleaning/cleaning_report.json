@@ -1,5 +1,27 @@
 {
-    "duplicates_removed": "handled",
-    "missing_values_before": 4,
-    "missing_values_after": 0
+    "rows_before": 11,
+    "rows_after": 10,
+    "columns_before": 6,
+    "columns_after": 5,
+    "duplicates_removed": 1,
+    "missing_values_before": 6,
+    "missing_values_after": 0,
+    "numerical_columns": [
+        "id",
+        "age",
+        "income",
+        "constant_col"
+    ],
+    "categorical_columns": [
+        "city",
+        "gender"
+    ],
+    "constant_columns_removed": [
+        "constant_col"
+    ],
+    "outlier_capped_columns": [
+        "id",
+        "age",
+        "income"
+    ]
 }

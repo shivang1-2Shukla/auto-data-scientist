@@ -4,8 +4,8 @@ import joblib
 
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import root_mean_squared_error
-from sklearn.linear_model import LinearRegression
-from sklearn.ensemble import RandomForestRegressor
+from sklearn.linear_model import Lasso, LinearRegression, Ridge
+from sklearn.ensemble import GradientBoostingRegressor, RandomForestRegressor
 
 
 class AutoMLAgent:
@@ -15,11 +15,17 @@ class AutoMLAgent:
 
         self.models = {
             "LinearRegression": LinearRegression(),
+            "Ridge": Ridge(alpha=1.0),
+            "Lasso": Lasso(alpha=0.01),
             "RandomForest": RandomForestRegressor(
                 n_estimators=100,
                 random_state=42
-            )
+                ),
+            "GradientBoosting": GradientBoostingRegressor(
+                random_state=42
+                )
         }
+
 
     def run(self, X, y):
         print("Training models...")
