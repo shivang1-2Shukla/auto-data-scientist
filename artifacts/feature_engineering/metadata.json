@@ -1,15 +1,17 @@
 {
     "categorical_columns": [
+        "gender",
         "city",
-        "gender"
+        "last_login",
+        "account_status"
     ],
     "numerical_columns": [
-        "id",
-        "income"
+        "income",
+        "purchases"
     ],
     "target_column": "age",
     "output_shape": [
-        10,
-        7
+        25,
+        37
     ]
 }

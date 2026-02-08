@@ -3,20 +3,20 @@
     "metric": "rmse",
     "results": {
         "LinearRegression": {
-            "rmse": 3.9787413501411604
+            "rmse": 4.362654905768214
         },
         "Ridge": {
-            "rmse": 3.3732240726941005
+            "rmse": 4.219031169858554
         },
         "Lasso": {
-            "rmse": 3.928807952733825
+            "rmse": 3.6076530282853994
         },
         "RandomForest": {
-            "rmse": 1.5565065049655267
+            "rmse": 5.080354810443853
         },
         "GradientBoosting": {
-            "rmse": 1.6477933963249924
+            "rmse": 7.487741318736492
         }
     },
-    "best_model": "RandomForest"
+    "best_model": "Lasso"
 }

@@ -1,27 +1,47 @@
 {
-    "rows_before": 11,
-    "rows_after": 10,
-    "columns_before": 6,
-    "columns_after": 5,
+    "rows_before": 26,
+    "columns_before": 11,
     "duplicates_removed": 1,
-    "missing_values_before": 6,
-    "missing_values_after": 0,
     "numerical_columns": [
-        "id",
+        "customer_id",
         "age",
         "income",
-        "constant_col"
+        "purchases"
     ],
     "categorical_columns": [
+        "name",
+        "gender",
         "city",
-        "gender"
+        "signup_date",
+        "last_login",
+        "account_status",
+        "notes"
     ],
-    "constant_columns_removed": [
-        "constant_col"
+    "high_missing_columns_dropped": [
+        "notes"
     ],
-    "outlier_capped_columns": [
-        "id",
+    "missing_values_before": 13,
+    "missing_values_after": 0,
+    "constant_columns_removed": [],
+    "id_like_columns_removed": [
+        "customer_id",
+        "name",
+        "signup_date"
+    ],
+    "outliers_capped": {
+        "age": 3,
+        "income": 3,
+        "purchases": 3
+    },
+    "rows_after": 25,
+    "columns_after": 7,
+    "final_columns": [
         "age",
-        "income"
+        "gender",
+        "city",
+        "income",
+        "last_login",
+        "purchases",
+        "account_status"
     ]
 }
