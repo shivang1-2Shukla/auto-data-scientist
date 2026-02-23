@@ -11,12 +11,27 @@
         "Lasso": {
             "rmse": 3.6076530282853994
         },
+        "ElasticNet": {
+            "rmse": 4.049152030150059
+        },
         "RandomForest": {
-            "rmse": 5.080354810443853
+            "rmse": 5.2261376751861395
+        },
+        "ExtraTrees": {
+            "rmse": 3.7765599425932597
         },
         "GradientBoosting": {
-            "rmse": 7.487741318736492
+            "rmse": 7.179765994389193
+        },
+        "XGBoost": {
+            "rmse": 1.8650862738574383
+        },
+        "KNN": {
+            "rmse": 2.230694958975789
+        },
+        "MLP": {
+            "rmse": 4.250594409265283
         }
     },
-    "best_model": "Lasso"
+    "best_model": "XGBoost"
 }

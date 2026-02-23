@@ -4,8 +4,11 @@ import joblib
 
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import root_mean_squared_error
-from sklearn.linear_model import Lasso, LinearRegression, Ridge
-from sklearn.ensemble import GradientBoostingRegressor, RandomForestRegressor
+from sklearn.linear_model import ElasticNet, Lasso, LinearRegression, Ridge
+from sklearn.ensemble import ExtraTreesRegressor, GradientBoostingRegressor, RandomForestRegressor
+from sklearn.neighbors import KNeighborsRegressor
+from sklearn.neural_network import MLPRegressor
+from xgboost import XGBRegressor
 
 
 class AutoMLAgent:
@@ -17,13 +20,13 @@ class AutoMLAgent:
             "LinearRegression": LinearRegression(),
             "Ridge": Ridge(alpha=1.0),
             "Lasso": Lasso(alpha=0.01),
-            "RandomForest": RandomForestRegressor(
-                n_estimators=100,
-                random_state=42
-                ),
-            "GradientBoosting": GradientBoostingRegressor(
-                random_state=42
-                )
+            "ElasticNet": ElasticNet(),
+            "RandomForest": RandomForestRegressor(),
+            "ExtraTrees": ExtraTreesRegressor(),
+            "GradientBoosting": GradientBoostingRegressor(),
+            "XGBoost": XGBRegressor(),
+            "KNN": KNeighborsRegressor(),
+            "MLP": MLPRegressor(max_iter=500)
         }
 
 
