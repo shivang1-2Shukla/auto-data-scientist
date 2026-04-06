@@ -1,0 +1,63 @@
+{
+    "metrics": {
+        "automl": {
+            "task_type": "regression",
+            "metric": "rmse",
+            "results": {
+                "LinearRegression": {
+                    "rmse": 4.362654905764928
+                },
+                "Ridge": {
+                    "rmse": 4.2190311773162605
+                },
+                "Lasso": {
+                    "rmse": 3.6076530282853994
+                },
+                "ElasticNet": {
+                    "rmse": 4.049152030150059
+                },
+                "RandomForest": {
+                    "rmse": 4.637565093882779
+                },
+                "ExtraTrees": {
+                    "rmse": 3.911502268949873
+                },
+                "GradientBoosting": {
+                    "rmse": 7.350409253264941
+                },
+                "XGBoost": {
+                    "rmse": 1.8650862738574383
+                },
+                "KNN": {
+                    "rmse": 2.230694958975789
+                },
+                "MLP": {
+                    "rmse": 3.830953559105492
+                }
+            },
+            "best_model": "XGBoost"
+        },
+        "evaluation": {
+            "metric": "rmse",
+            "cv_folds": 5,
+            "n_samples": 25,
+            "mean_rmse": 2.735512371147396,
+            "std_rmse": 2.2427883009499596,
+            "all_scores": [
+                2.982039579161505,
+                1.3117263867078393,
+                0.45152664569214523,
+                6.90086839353271,
+                2.031400850642778
+            ]
+        }
+    },
+    "artifacts": {
+        "cleaned_data": "data/processed/cleaned.csv",
+        "feature_metadata": "artifacts/metadata.json",
+        "pipeline": "artifacts/pipeline.pkl",
+        "model": "models/best_model.pkl"
+    },
+    "end_time": "2026-04-06T21:53:12.800112",
+    "status": "SUCCESS"
+}
