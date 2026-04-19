@@ -1,37 +1,28 @@
 {
-    "task_type": "regression",
-    "metric": "rmse",
+    "task_type": "classification",
+    "metric": "accuracy",
     "results": {
-        "LinearRegression": {
-            "rmse": 4.362654905768214
-        },
-        "Ridge": {
-            "rmse": 4.219031169858554
-        },
-        "Lasso": {
-            "rmse": 3.6076530282853994
-        },
-        "ElasticNet": {
-            "rmse": 4.049152030150059
+        "LogisticRegression": {
+            "accuracy": 0.69
         },
         "RandomForest": {
-            "rmse": 5.2261376751861395
+            "accuracy": 0.68
         },
         "ExtraTrees": {
-            "rmse": 3.7765599425932597
+            "accuracy": 0.66
         },
         "GradientBoosting": {
-            "rmse": 7.179765994389193
+            "accuracy": 0.72
         },
         "XGBoost": {
-            "rmse": 1.8650862738574383
+            "accuracy": 0.69
         },
         "KNN": {
-            "rmse": 2.230694958975789
+            "accuracy": 0.67
         },
         "MLP": {
-            "rmse": 4.250594409265283
+            "accuracy": 0.69
         }
     },
-    "best_model": "XGBoost"
+    "best_model": "GradientBoosting"
 }

@@ -1,47 +1,36 @@
 {
-    "rows_before": 26,
-    "columns_before": 11,
-    "duplicates_removed": 1,
+    "rows_before": 1000,
+    "columns_before": 6,
+    "duplicates_removed": 0,
     "numerical_columns": [
-        "customer_id",
-        "age",
-        "income",
-        "purchases"
+        "Age",
+        "Years_At_Company",
+        "Salary",
+        "Job_Satisfaction_Score"
     ],
     "categorical_columns": [
-        "name",
-        "gender",
-        "city",
-        "signup_date",
-        "last_login",
-        "account_status",
-        "notes"
+        "Department",
+        "Will_Quit"
     ],
-    "high_missing_columns_dropped": [
-        "notes"
-    ],
-    "missing_values_before": 13,
+    "high_missing_columns_dropped": [],
+    "missing_values_before": 0,
     "missing_values_after": 0,
     "constant_columns_removed": [],
     "id_like_columns_removed": [
-        "customer_id",
-        "name",
-        "signup_date"
+        "Salary"
     ],
     "outliers_capped": {
-        "age": 3,
-        "income": 3,
-        "purchases": 3
+        "Age": 0,
+        "Years_At_Company": 0,
+        "Job_Satisfaction_Score": 0
     },
-    "rows_after": 25,
-    "columns_after": 7,
+    "rows_after": 1000,
+    "columns_after": 5,
     "final_columns": [
-        "age",
-        "gender",
-        "city",
-        "income",
-        "last_login",
-        "purchases",
-        "account_status"
+        "Age",
+        "Years_At_Company",
+        "Job_Satisfaction_Score",
+        "Department",
+        "Will_Quit"
     ]
 }

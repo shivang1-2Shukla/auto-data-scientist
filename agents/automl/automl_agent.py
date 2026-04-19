@@ -3,32 +3,48 @@ import json
 import joblib
 
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import root_mean_squared_error
-from sklearn.linear_model import ElasticNet, Lasso, LinearRegression, Ridge
+from sklearn.metrics import root_mean_squared_error, accuracy_score
+
+from sklearn.linear_model import ElasticNet, Lasso, LinearRegression, Ridge, LogisticRegression
 from sklearn.ensemble import ExtraTreesRegressor, GradientBoostingRegressor, RandomForestRegressor
-from sklearn.neighbors import KNeighborsRegressor
-from sklearn.neural_network import MLPRegressor
-from xgboost import XGBRegressor
+from sklearn.ensemble import ExtraTreesClassifier, GradientBoostingClassifier, RandomForestClassifier
+from sklearn.neighbors import KNeighborsRegressor, KNeighborsClassifier
+from sklearn.neural_network import MLPRegressor, MLPClassifier
+from xgboost import XGBRegressor, XGBClassifier
 
 
 class AutoMLAgent:
     def __init__(self, task_type="regression"):
-        print("🤖 AutoMLAgent initialized")
+        print(f"🤖 AutoMLAgent initialized ({task_type})")
         self.task_type = task_type
 
-        self.models = {
-            "LinearRegression": LinearRegression(),
-            "Ridge": Ridge(alpha=1.0),
-            "Lasso": Lasso(alpha=0.01),
-            "ElasticNet": ElasticNet(),
-            "RandomForest": RandomForestRegressor(),
-            "ExtraTrees": ExtraTreesRegressor(),
-            "GradientBoosting": GradientBoostingRegressor(),
-            "XGBoost": XGBRegressor(),
-            "KNN": KNeighborsRegressor(),
-            "MLP": MLPRegressor(max_iter=500)
-        }
-
+        if self.task_type == "regression":
+            self.metric_name = "rmse"
+            self.models = {
+                "LinearRegression": LinearRegression(),
+                "Ridge": Ridge(alpha=1.0),
+                "Lasso": Lasso(alpha=0.01),
+                "ElasticNet": ElasticNet(),
+                "RandomForest": RandomForestRegressor(),
+                "ExtraTrees": ExtraTreesRegressor(),
+                "GradientBoosting": GradientBoostingRegressor(),
+                "XGBoost": XGBRegressor(),
+                "KNN": KNeighborsRegressor(),
+                "MLP": MLPRegressor(max_iter=500)
+            }
+        elif self.task_type == "classification":
+            self.metric_name = "accuracy"
+            self.models = {
+                "LogisticRegression": LogisticRegression(max_iter=1000),
+                "RandomForest": RandomForestClassifier(),
+                "ExtraTrees": ExtraTreesClassifier(),
+                "GradientBoosting": GradientBoostingClassifier(),
+                "XGBoost": XGBClassifier(),
+                "KNN": KNeighborsClassifier(),
+                "MLP": MLPClassifier(max_iter=500)
+            }
+        else:
+            raise ValueError(f"Unsupported task type: {task_type}")
 
     def run(self, X, y):
         print("Training models...")
@@ -43,11 +59,18 @@ class AutoMLAgent:
             model.fit(X_train, y_train)
             preds = model.predict(X_val)
 
-            rmse = root_mean_squared_error(y_val, preds)
+            if self.task_type == "regression":
+                score = root_mean_squared_error(y_val, preds)
+            else:
+                score = accuracy_score(y_val, preds)
 
-            results[name] = {"rmse": rmse}
+            results[name] = {self.metric_name: score}
 
-        best_model_name = min(results, key=lambda x: results[x]["rmse"])
+        if self.task_type == "regression":
+            best_model_name = min(results, key=lambda x: results[x][self.metric_name])
+        else:
+            best_model_name = max(results, key=lambda x: results[x][self.metric_name])
+
         best_model = self.models[best_model_name]
 
         os.makedirs("artifacts/model", exist_ok=True)
@@ -55,7 +78,7 @@ class AutoMLAgent:
 
         report = {
             "task_type": self.task_type,
-            "metric": "rmse",
+            "metric": self.metric_name,
             "results": results,
             "best_model": best_model_name
         }

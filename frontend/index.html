@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Data Scientist Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/frontend/style.css">
+    <!-- Include Chart.js and PapaParse -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+</head>
+<body>
+
+    <main class="container">
+        <header>
+            <h1>Auto Data Scientist</h1>
+            <p>End-to-End Machine Learning Platform</p>
+        </header>
+
+        <!-- Upload View -->
+        <section id="upload-view" class="view active">
+            <div class="card glass">
+                <h2>Train a new model</h2>
+                
+                <div class="drop-zone" id="drop-zone">
+                    <span class="drop-zone__prompt">Drop CSV file here or click to upload</span>
+                    <input type="file" name="file" id="file-input" class="drop-zone__input" accept=".csv" required>
+                </div>
+
+                <!-- Data Explorer (hidden until file uploaded) -->
+                <div id="data-explorer" style="display: none; margin-top: 2rem;">
+                    <h3>Data Explorer</h3>
+                    <div class="charts-grid">
+                        <div class="chart-container">
+                            <canvas id="chart-1"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="chart-2"></canvas>
+                        </div>
+                    </div>
+                    
+                    <h4>Data Preview (First 5 Rows)</h4>
+                    <div class="table-container" style="margin-bottom: 2rem;">
+                        <table class="leaderboard-table" id="data-preview-table">
+                            <thead>
+                                <!-- Dynamic Headers -->
+                            </thead>
+                            <tbody>
+                                <!-- Dynamic Rows -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <form id="upload-form">
+                        <div class="input-group">
+                            <label for="task-type">Task Type:</label>
+                            <select id="task-type" name="task_type" required>
+                                <option value="regression">Regression (Predicting a Number)</option>
+                                <option value="classification">Classification (Predicting a Category)</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="target-column">Target Column (to predict):</label>
+                            <select id="target-column" name="target_column" required>
+                                <!-- Populated dynamically via JS -->
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="btn primary-btn" id="run-btn">Run Pipeline 🚀</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Loading View -->
+        <section id="loading-view" class="view">
+            <div class="card glass text-center">
+                <div class="spinner"></div>
+                <h2>Running Pipeline...</h2>
+                <p class="loading-text" id="loading-text">Cleaning data...</p>
+            </div>
+        </section>
+
+        <!-- Dashboard View -->
+        <section id="dashboard-view" class="view">
+            <div class="dashboard-grid">
+                <!-- Row 1: Metrics & Prediction Chart -->
+                <div class="card glass metric-card">
+                    <h3>Best Model</h3>
+                    <div class="metric-value" id="best-model">-</div>
+                </div>
+                <div class="card glass metric-card">
+                    <h3 id="test-metric-title">Test Metric</h3>
+                    <div class="metric-value" id="test-metric-value">-</div>
+                </div>
+                <div class="card glass metric-card" style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1rem;">
+                    <h3 id="prediction-chart-title">Model Accuracy Breakdown</h3>
+                    <div style="width: 100%; height: 200px; position: relative;">
+                        <canvas id="prediction-chart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Row 1.5: Batch Prediction -->
+                <div class="card glass full-width">
+                    <h3>Batch Prediction (Test on New Data)</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">Upload a CSV file containing new data (without the Outcome column). The AI will predict the outcomes and provide a downloadable file.</p>
+                    <form id="batch-predict-form" style="display: flex; gap: 1rem; align-items: center;">
+                        <input type="file" id="batch-file-input" accept=".csv" required style="flex: 1; padding: 0.5rem; border: 1px solid var(--border-color); border-radius: 4px;">
+                        <button type="submit" class="btn primary-btn" style="width: auto; padding: 0.5rem 2rem;">Upload & Predict 🚀</button>
+                    </form>
+                    <div id="batch-result" style="margin-top: 1rem; font-size: 1rem; font-weight: bold; color: var(--aws-blue);"></div>
+                </div>
+                
+                <!-- Row 2: Leaderboard -->
+                <div class="card glass full-width">
+                    <h3>Model Leaderboard</h3>
+                    <div class="table-container">
+                        <table class="leaderboard-table" id="leaderboard-table">
+                            <thead>
+                                <tr>
+                                    <th>Model Name</th>
+                                    <th id="leaderboard-metric-title">Score</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+
+
+                <!-- Row 4: Actions -->
+                <div class="card glass full-width actions" style="display: flex; gap: 1rem;">
+                    <a id="download-btn" href="/download-predictions" class="btn primary-btn" style="text-align: center; text-decoration: none; flex: 1;" download>Download Predictions (CSV)</a>
+                    <button class="btn secondary-btn" style="flex: 1;" onclick="location.reload()">Train Another Model</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="/frontend/script.js"></script>
+</body>
+</html>
